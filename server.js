@@ -2,7 +2,7 @@ var http = require('http');
 var util = require('util');
 
 var host = '127.0.0.1';
-var port = 80;
+var port = process.env.PORT || 3000;
 
 if (process.env.C9_PORT) {
     host = '0.0.0.0';

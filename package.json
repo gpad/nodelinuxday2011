@@ -1,0 +1,22 @@
+{
+  "author": "gpad",
+  "name": "GPadTodo",
+  "description": "app example fo LinuxDay",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gpad/LinuxDay2011",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gpad/LinuxDay2011.git"
+  },
+  "main": "./server.js",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "formidable": "~1.0.6"
+  },
+  "devDependencies": {
+    "nodeunit": "~1.1.1",
+    "far": "~0.0.7"
+  }
+}

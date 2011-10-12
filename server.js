@@ -1,6 +1,11 @@
 var http = require('http');
+
+var host = '0.0.0.0';
+var port = process.env.C9_PORT;
+
+
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
-}).listen(1337, "127.0.0.1");
-console.log('Server running at http://127.0.0.1:1337/');
+  res.end('Hello Linux Day!!!\n');
+}).listen(port, host);
+console.log('Server running at http://' + host + ':' + port + '/');

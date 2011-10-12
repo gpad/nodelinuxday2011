@@ -16,7 +16,7 @@
     "formidable": "~1.0.6"
   },
   "devDependencies": {
-    "nodeunit": "~1.1.1",
+    "nodeunit": "~0.5.5",
     "far": "~0.0.7"
   }
 }

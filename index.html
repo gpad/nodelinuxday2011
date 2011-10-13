@@ -7,5 +7,11 @@
     <body>
         <h1>Hello LinuxDay</h1>
         <a href="page1.html">go to page1</a>
+        
+        <form action="/upload" enctype="multipart/form-data" method="post">
+            <input type="text" name="title"><br />
+            <input type="file" name="upload" multiple="multiple"><br/>
+            <input type="submit" value="Upload">
+        </form>
     </body>
 </html>

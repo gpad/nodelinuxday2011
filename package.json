@@ -1,12 +1,12 @@
 {
   "author": "gpad",
-  "name": "GPadTodo",
-  "description": "app example fo LinuxDay",
+  "name": "nodelinuxday2011",
+  "description": "app example fo LinuxDay 2001",
   "version": "0.0.1",
-  "homepage": "https://github.com/gpad/LinuxDay2011",
+  "homepage": "https://github.com/gpad/nodelinuxday2011",
   "repository": {
     "type": "git",
-    "url": "git://github.com/gpad/LinuxDay2011.git"
+    "url": "git://github.com/gpad/nodelinuxday2011.git"
   },
   "main": "./server.js",
   "engines": {

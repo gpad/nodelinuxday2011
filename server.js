@@ -29,13 +29,11 @@ http.createServer(function(req, res) {
 			res.write('<h1>Images</h1>');
 			files.forEach(function(fileName) {
 				if (path.extname(fileName) == '.jpg') {
-					console.log('***' + fileName);
 					res.write("<img src=\'" + fileName + "\' /><br />");
 				}
 			});
 			res.write("<a href='/'>home</a>");
 			res.end('</body></html>');
-			console.log('mandato end');
 		});
 	}
     else if (req.url == '/upload') {
@@ -47,13 +45,10 @@ http.createServer(function(req, res) {
         form.on('fileBegin', function(name, file) {
             file.path = file.name;
         }).on('field', function(field, value) {
-            console.log(field, value);
             fields.push([field, value]);
         }).on('file', function(field, file) {
-            console.log(field, file);
             files.push([field, file]);
         }).on('end', function() {
-            console.log('-> upload done');
             res.writeHead(200, {
                 'content-type': 'text/plain'
             });

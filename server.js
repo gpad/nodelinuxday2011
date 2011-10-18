@@ -2,6 +2,7 @@ var http = require('http');
 var util = require('util');
 var fs = require('fs');
 var formidable = require('formidable');
+var path = require('path');
 
 var host = '0.0.0.0';
 var port = process.env.PORT || 3000;
@@ -11,8 +12,6 @@ if (process.env.C9_PORT) {
 }
 http.createServer(function(req, res) {
     
-    console.log(util.inspect(req));
-    
     if (req.url == '/') {
         fs.readFile('index.html', function(err, data) {
             res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -21,6 +20,24 @@ http.createServer(function(req, res) {
             res.end('');
         });
     }
+	else if (req.url == '/images.html') {
+		res.writeHead(200, { 'Content-Type': 'text/html' });
+		fs.readdir('.', function(err, files){
+			if (err) throw err;
+			
+			res.write('<html><body>');
+			res.write('<h1>Images</h1>');
+			files.forEach(function(fileName) {
+				if (path.extname(fileName) == '.jpg') {
+					console.log('***' + fileName);
+					res.write("<img src=\'" + fileName + "\' /><br />");
+				}
+			});
+			res.write("<a href='/'>home</a>");
+			res.end('</body></html>');
+			console.log('mandato end');
+		});
+	}
     else if (req.url == '/upload') {
         var form = new formidable.IncomingForm(),
           files = [],
@@ -28,11 +45,7 @@ http.createServer(function(req, res) {
         form.uploadDir = '.';
         form.keepExtensions = true;
         form.on('fileBegin', function(name, file) {
-            //console.log("**************");
-            //console.log(name);
-            //console.log(util.inspect(file));
             file.path = file.name;
-            //console.log("**************");
         }).on('field', function(field, value) {
             console.log(field, value);
             fields.push([field, value]);
@@ -50,5 +63,24 @@ http.createServer(function(req, res) {
         });
         form.parse(req);
     }
+	else {
+		try {
+			fs.readFile('.' + req.url, function(err, data) {
+				if (err) {
+					res.writeHead(403, {'Content-Type' : 'text/plain'});
+					res.end(req.url + ' not found');
+				} 
+				else {
+					res.writeHead(200, { 'Content-Type': 'text/html' });
+					res.write(data);
+					res.end('');
+				}
+			});
+		}
+		catch (err) {
+			res.writeHead(403, {'Content-Type' : 'text/plain'});
+			res.end(req.url + ' not found');
+		}
+	}
 }).listen(port, host);
 console.log('Server running at http://' + host + ':' + port + '/');
